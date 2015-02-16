@@ -1,0 +1,136 @@
+---
+title: "Coursera's MMDS course Week 2 Quiz 1"
+output: html_document
+---
+
+This is the solution of Coursera's MMDS course Week 2 Quiz 1
+
+# Question 1
+The edit distance is the minimum number of character insertions and character deletions required to turn one string into another. Compute the edit distance between each pair of the strings he, she, his, and hers. Then, identify which of the following is a true statement about the number of pairs at a certain edit distance.
+
+## Solution
+```{r}
+library("stringdist")
+stringdist("she", "he", method="lv")
+stringdist("his", "he", method="lv")
+stringdist("hers", "he", method="lv")
+stringdist("she", "he", method="lv")
+stringdist("she", "his", method="lv")
+stringdist("she", "hers", method="lv")
+stringdist("his", "hers", method="lv")
+stringdist("she", "hers", method="lv")
+stringdist("she", "he", method="lv")
+```
+
+
+You need to calculate the edit distance for each of the six pairs of words. A useful rule is that this distance is the sum of the lengths of the words, minus twice the length of the LCS (longest common subsequence). The LCS of two words is any longest sequence of characters that can be formed by striking out characters from each of the words. For example, the LCS of "rotate" and "aorta" is of length 3; both "rta" and "ota" are LCS's. Note, for instance, that "ota" can be made from "rotate" by striking out positions 1, 5, and 6, and "ota" can be made from "aorta" by striking out positions 1 and 3. Thus, the edit distance between "rotate" and "aorta" is |rotate| + |aorta| - 2*|ota| = 6 + 5 -2*3 = 5. One way to perform the five edits is to delete positions 1, 5, and 6 from "rotate", leaving "ota", and then insert "a" at the beginning and "r" before "t".
+
+
+
+# Question 2
+Consider the following matrix:
+
+    C1  C2	C3	C4
+    R1	0	1	1	0
+    R2	1	0	1	1
+    R3	0	1	0	1
+    R4	0	0	1	0
+    R5	1	0	1	0
+    R6	0	1	0	0
+
+Perform a minhashing of the data, with the order of rows: R4, R6, R1, R3, R5, R2. Which of the following is the correct minhash value of the stated column
+
+Note: we give the minhash value in terms of the original name of the row, rather than the order of the row in the permutation. These two schemes are equivalent, since we only care whether hash values for two columns are equal, not what their actual values are.
+
+##Solution
+        C1  C2  C3  C4  
+    R4:	- 	- 	R4	-
+    R6:	-   R6  -   -	
+    R1:	-   -   -   -
+    R3: -   -   -   R3
+    R5: R5  -   -   -
+    R2:	-   -   -   -
+    
+    
+#Question 3
+Here is a matrix representing the signatures of seven columns, C1 through C7.
+
+    C1  C2	C3	C4	C5	C6	C7
+    1	  2	  1	  1	  2	  5	  4
+    2	  3	  4	  2	  3	  2	  2
+    
+    3	  1	  2	  3	  1	  3	  2
+    4	  1   3   1	  2	  4	  4
+    
+    5	  2	  5	  1	  1	  5	  1
+    6	  1	  6	  4	  1	  1	  4
+    
+Suppose we use locality-sensitive hashing with three bands of two rows each. Assume there are enough buckets available that the hash function for each band can be the identity function (i.e., columns hash to the same bucket if and only if they are identical in the band). Find all the candidate pairs, and then identify one of them in the list below.
+
+##Solution
+* C1 and C2 in Band 1
+* C2 and C5 in Band 1
+* C1 and C6 in Band 2
+* C4 and C7 in Band 3
+* C1 and C3 in Band 3
+
+# Question 4
+Find the set of 2-shingles for the "document":
+    ABRACADABRA
+
+and also for the "document":
+    BRICABRAC
+
+
+## Solution:
+
+    AB  2
+    BR  2
+    RA  2
+    AC  1
+    CA  1
+    AD  1
+    DA  1
+  
+    BR  2
+    RI  1
+    IC  1
+    CA  1
+    AB  1
+    RA  1
+    AC  1
+  
+  
+* How many 2-shingles does ABRACADABRA have?
+
+    {AB, BR, RA, AC, CA, AD, DA} => 7
+
+* How many 2-shingles does BRICABRAC have?
+  
+    {BR, RI, IC, CA, AB, RA, AC} => 7
+
+* How many 2-shingles do they have in common?
+    
+    {AB, BR, RA, AC, CA} => 5
+
+* What is the Jaccard similarity between the two documents?
+```{r}
+  5/(7+7)
+````
+
+## Question 6
+
+Suppose we want to assign points to whichever of the points (0,0) or (100,40) is nearer. Depending on whether we use the L1 or L2 norm, a point (x,y) could be clustered with a different one of these two points. For this problem, you should work out the conditions under which a point will be assigned to (0,0) when the L1 norm is used, but assigned to (100,40) when the L2 norm is used. Identify one of those points from the list below.
+
+### Solution
+
+    printDistance <- function(a,b) {  
+      p1l1 = (a^2+ b^2)^(1/2)
+      p2l1 = ((100-a)^2 + (40-b)^2)^(1/2)
+      p1l2 = (a+b)
+      p2l2 = (100-a) + (40-b)
+      print(p1l1)
+      print(p2l1)
+      print(p1l2)
+      print(p2l2)
+    }
