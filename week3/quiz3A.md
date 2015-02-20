@@ -32,7 +32,7 @@ As a function of n, the number of emails in the stream so far, what should the t
 
 ## Solution
 
-This is my first try (not verified):
+Here are my ideas:
 
 	n = number of emails sent so far
 	f = (t + 1) / 1 000 000 (fraction of selected users)
