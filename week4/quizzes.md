@@ -1,3 +1,24 @@
+## Quiz 4.1
+
+###  Question 1
+
+Zuerst die Zeilendurchschnitte bilden und damit die Tabelle normalisieren. **Von der normalisierten Tabelle** die Spaltendurchschnitte bilden und nochmal normalisieren.
+
+Jetzt dürfte eine der Antworten **wahr** sein.
+
+###  Question 1
+
+Die letzte Spalte ist ein Rating, das mit α = 0, 0.5, 1, and 2 skaliert werden soll. Also für die mittlere Spalte sind die Skalierungen:
+
+	α =   0: 6 *  0 = 0
+	α = 0.5: 6 *0.5 = 3
+	α =   1: 6 *  1 = 6 
+	α =   2: 6 *  2 = 12
+	
+Nun die [Kosinusdistanz](http://de.wikipedia.org/wiki/Kosinus-%C3%84hnlichkeit) für die in den Antworten gegebenen Paare ausrechnen. 
+
+Eine Antwort wird dann stimmen.
+	
 ##  Quiz 4.2
 
 ### Question 1
